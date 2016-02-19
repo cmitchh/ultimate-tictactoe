@@ -6,6 +6,7 @@ def welcome():
 	print("Rules: The goal is to create a line of three won boards.\nA board is won when a line of X's or O's is created. \nLike in the simple version, players alternate turns\nplacing their symbol in a square by entering a letter\nA-I indicating their selected square. The catch is that\nwhichever square a player places their symbol is then\nthe square on the overall board that the opponent must\nplay in. If a player is sent to a completed square, they \nget to choose which board to play on.\n")
 	print("\nPlayer 1 is x\nPlayer 2 is o\n")
 
+
 def createboards():
 	#indices 0-8 are board spaces, index 9 is board state (won or not)
 	A = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "open"]
@@ -51,46 +52,46 @@ def play(board, activeplayer, mark):
 		return move, lmove
 	else:
 		print ("\nThat is not a valid square\n")
-		play()
+		play(board, activeplayer, mark)
 
 def updateboards(A, B, C, D, E, F, G, H, I, move, board, activeplayer, mark):
 	if (board == "A"):
-		checkspace(move, A)
+		checkspace(move, A, activeplayer, mark, board)
 		A[move] = mark
 	elif (board =="B"):
-		checkspace(move, B)
+		checkspace(move, B, activeplayer, mark, board)
 		B[move] = mark
 	elif (board =="C"):
-		checkspace(move, C)
+		checkspace(move, C, activeplayer, mark, board)
 		C[move] = mark
 	elif (board =="D"):
-		checkspace(move, D)
+		checkspace(move, D, activeplayer, mark, board)
 		D[move] = mark
 	elif (board =="E"):
-		checkspace(move, E)
+		checkspace(move, E, activeplayer, mark, board)
 		E[move] = mark
 	elif (board =="F"):
-		checkspace(move, F)
+		checkspace(move, F, activeplayer, mark, board)
 		F[move] = mark
 	elif (board =="G"):
-		checkspace(move, G)
+		checkspace(move, G, activeplayer, mark, board)
 		G[move] = mark
 	elif (board =="H"):
-		checkspace(move, H)
+		checkspace(move, H, activeplayer, mark, board)
 		H[move] = mark
 	else:
-		checkspace(move, I)
+		checkspace(move, I, activeplayer, mark, board)
 		I[move] = mark
 	return A, B, C, D, E, F, G, H, I
 
 #check to see if space is free
-def checkspace(move, board):
-	while (board[move] == "x"):
+def checkspace(move, boardcontents, activeplayer, mark, board):
+	while (boardcontents[move] == "x"):
 		print ("This square is taken")
-		play()
-	while (board[move] == "o"):
+		play(board, activeplayer, mark)
+	while (boardcontents[move] == "o"):
 		print ("This square is taken")
-		play()
+		play(board, activeplayer, mark)
 
 
 #takes inputted letter and changes it into an integer to simplify computation
@@ -212,7 +213,12 @@ def check(board):
 	else:
 		return False
 
-
+def checkforcats(board):
+	if((board[0] == "x" or board[0] == "y") and (board[1] == "x" or board[1] == "y") and (board[2] == "x" or board[2] == "y") and (board[3] == "x" or board[3] == "y") and (board[4] == "x" or board[4] == "y") and (board[5] == "x" or board[5] == "y") and (board[6] == "x" or board[6] == "y") and (board[7] == "x" or board[7] == "y") and (board[8] == "x" or board[8] == "y")):
+		return True
+	else:
+		return False
+ 
 def nextboard(A, B, C, D, E, F, G, H, I, lmove):
 	board = lmove
 	if ((board == "A") and (A[9] == "open")):
@@ -234,8 +240,8 @@ def nextboard(A, B, C, D, E, F, G, H, I, lmove):
 	elif ((board == "I") and (I[9] == "open")):
 		return board
 	else:
-		board = getnewboard(A, B, C, D, E, F, G, H, I)
-		return board
+		nboard = getnewboard(A, B, C, D, E, F, G, H, I)
+		return nboard
 
 		
 def getnewboard(A, B, C, D, E, F, G, H, I):
@@ -244,7 +250,7 @@ def getnewboard(A, B, C, D, E, F, G, H, I):
 		return board
 	else:
 		print ("\nThat is not a valid board selection\n")
-		getnewboard()
+		return getnewboard(A, B, C, D, E, F, G, H, I)
 
 
 
@@ -277,6 +283,7 @@ def main():
 #todo: 
 #fix delay in small board win check
 #fix overall win check
+#cat's game
 
 #\   /
 #  X
@@ -285,6 +292,9 @@ def main():
 #/   \
 #|   |
 #\   /
+
+
+
 
 
 
