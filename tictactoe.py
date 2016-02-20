@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 import sys
+import pdb
 
 def welcome():
 	print("\nWelcome to Ultimate Tic-Tac-Toe!\n")
@@ -132,7 +133,7 @@ def switchplayer(activeplayer):
 def checksmallboards(A, B, C, D, E, F, G, H, I, Overall, mark):
 		#this needs simplifying
 		if ((check(A) == True) and (A[9] == "open")):
-			Overall[0] == mark
+			Overall[0] = mark
 			if (mark == "x"):
 				A = ["\\", " ", "/", " ", "X", " ", "/", " ", "\\", "won"]
 			else:
@@ -143,56 +144,56 @@ def checksmallboards(A, B, C, D, E, F, G, H, I, Overall, mark):
 				B = ["\\", " ", "/", " ", "X", " ", "/", " ", "\\", "won"]
 			else:
 				B = ["/", " ", "\\", "|", " ", "|", "\\", " ", "/", "won"]
-			Overall[1] == mark
+			Overall[1] = mark
 			return A, B, C, D, E, F, G, H, I, Overall
 		elif ((check(C) == True) and (C[9] == "open")):
 			if (mark == "x"):
 				C = ["\\", " ", "/", " ", "X", " ", "/", " ", "\\", "won"]
 			else:
 				C = ["/", " ", "\\", "|", " ", "|", "\\", " ", "/", "won"]
-			Overall[2] == mark 
+			Overall[2] = mark 
 			return A, B, C, D, E, F, G, H, I, Overall
 		elif ((check(D) == True) and (D[9] == "open")):
 			if (mark == "x"):
 				D = ["\\", " ", "/", " ", "X", " ", "/", " ", "\\", "won"]
 			else:
 				D = ["/", " ", "\\", "|", " ", "|", "\\", " ", "/", "won"]
-			Overall[3] == mark
+			Overall[3] = mark
 			return A, B, C, D, E, F, G, H, I, Overall
 		elif ((check(E) == True) and (E[9] == "open")):
 			if (mark == "x"):
 				E = ["\\", " ", "/", " ", "X", " ", "/", " ", "\\", "won"]
 			else:
 				E = ["/", " ", "\\", "|", " ", "|", "\\", " ", "/", "won"]
-			Overall[4] == mark
+			Overall[4] = mark
 			return A, B, C, D, E, F, G, H, I, Overall
 		elif ((check(F) == True) and (F[9] == "open")):
 			if (mark == "x"):
 				F = ["\\", " ", "/", " ", "X", " ", "/", " ", "\\", "won"]
 			else:
 				F = ["/", " ", "\\", "|", " ", "|", "\\", " ", "/", "won"]
-			Overall[5] == mark
+			Overall[5] = mark
 			return A, B, C, D, E, F, G, H, I, Overall
 		elif ((check(G) == True) and (G[9] == "open")):
 			if (mark == "x"):
 				G = ["\\", " ", "/", " ", "X", " ", "/", " ", "\\", "won"]
 			else:
 				G = ["/", " ", "\\", "|", " ", "|", "\\", " ", "/", "won"]
-			Overall[6] == mark
+			Overall[6] = mark
 			return A, B, C, D, E, F, G, H, I, Overall
 		elif ((check(H) == True) and (H[9] == "open")):
 			if (mark == "x"):
 				H = ["\\", " ", "/", " ", "X", " ", "/", " ", "\\", "won"]
 			else:
 				H = ["/", " ", "\\", "|", " ", "|", "\\", " ", "/", "won"]
-			Overall[7] == mark
+			Overall[7] = mark
 			return A, B, C, D, E, F, G, H, I, Overall
 		elif ((check(I) == True) and (I[9] == "open")):
 			if (mark == "x"):
 				I = ["\\", " ", "/", " ", "X", " ", "/", " ", "\\", "won"]
 			else:
 				I = ["/", " ", "\\", "|", " ", "|", "\\", " ", "/", "won"]
-			Overall[8] == mark
+			Overall[8] = mark
 			return A, B, C, D, E, F, G, H, I, Overall
 		else:
 			return A, B, C, D, E, F, G, H, I, Overall
@@ -218,6 +219,42 @@ def checkforcats(board):
 		return True
 	else:
 		return False
+
+def checksmallcats(A, B, C, D, E, F, G, H, I):
+	if (checkforcats(A) == True and A[9] == "open"):
+		A = [" ", "*", " ", "*", "*", "*", "*", " ", "*", "cats"]
+		return A, B, C, D, E, F, G, H, I
+	elif (checkforcats(B) == True and B[9] == "open"):
+		B = [" ", "*", " ", "*", "*", "*", "*", " ", "*", "cats"]
+		return A, B, C, D, E, F, G, H, I
+	elif (checkforcats(C) == True and C[9] == "open"):
+		C = [" ", "*", " ", "*", "*", "*", "*", " ", "*", "cats"]
+		return A, B, C, D, E, F, G, H, I
+	elif (checkforcats(D) == True and D[9] == "open"):
+		D = [" ", "*", " ", "*", "*", "*", "*", " ", "*", "cats"]
+		return A, B, C, D, E, F, G, H, I
+	elif (checkforcats(E) == True and E[9] == "open"):
+		E = [" ", "*", " ", "*", "*", "*", "*", " ", "*", "cats"]
+		return A, B, C, D, E, F, G, H, I
+	elif (checkforcats(F) == True and F[9] == "open"):
+		F = [" ", "*", " ", "*", "*", "*", "*", " ", "*", "cats"]
+		return A, B, C, D, E, F, G, H, I
+	elif (checkforcats(G) == True and G[9] == "open"):
+		G = [" ", "*", " ", "*", "*", "*", "*", " ", "*", "cats"]
+		return A, B, C, D, E, F, G, H, I
+	elif (checkforcats(H) == True and H[9] == "open"):
+		H = [" ", "*", " ", "*", "*", "*", "*", " ", "*", "cats"]
+		return A, B, C, D, E, F, G, H, I
+	elif (checkforcats(I) == True and I[9] == "open"):
+		I = [" ", "*", " ", "*", "*", "*", "*", " ", "*", "cats"]
+		return A, B, C, D, E, F, G, H, I
+	else:
+		return A, B, C, D, E, F, G, H, I
+		
+
+
+
+
  
 def nextboard(A, B, C, D, E, F, G, H, I, lmove):
 	board = lmove
@@ -273,7 +310,9 @@ def main():
 		A, B, C, D, E, F, G, H, I = updateboards(A, B, C, D, E, F, G, H, I, move, board, activeplayer, mark)
 		displayboard(A, B, C, D, E, F, G, H, I, Overall)
 		A, B, C, D, E, F, G, H, I, Overall = checksmallboards(A, B, C, D, E, F, G, H, I, Overall, mark)
+		A, B, C, D, E, F, G, H, I = checksmallcats(A, B, C, D, E, F, G, H, I)
 		wincondition = checkoverallboard(Overall, activeplayer)
+		print wincondition
 		board = nextboard(A, B, C, D, E, F, G, H, I, lmove)
 		activeplayer, mark = switchplayer(activeplayer)
 	
@@ -282,8 +321,8 @@ def main():
 
 #todo: 
 #fix delay in small board win check
-#fix overall win check
-#cat's game
+#fix overall win check and overall cats check
+#fix square is taken error
 
 #\   /
 #  X
