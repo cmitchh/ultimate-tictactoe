@@ -57,42 +57,42 @@ def play(board, activeplayer, mark):
 
 def updateboards(A, B, C, D, E, F, G, H, I, move, board, activeplayer, mark):
 	if (board == "A"):
-		checkspace(move, A, activeplayer, mark, board)
-		A[move] = mark
+		validmark = checkspace(move, A, activeplayer, mark, board)
+		A[move] = validvalidmark
 	elif (board =="B"):
-		checkspace(move, B, activeplayer, mark, board)
-		B[move] = mark
+		validmark = checkspace(move, B, activeplayer, mark, board)
+		B[move] = validmark
 	elif (board =="C"):
-		checkspace(move, C, activeplayer, mark, board)
-		C[move] = mark
+		validmark = checkspace(move, C, activeplayer, mark, board)
+		C[move] = validmark
 	elif (board =="D"):
-		checkspace(move, D, activeplayer, mark, board)
-		D[move] = mark
+		validmark = checkspace(move, D, activeplayer, mark, board)
+		D[move] = validmark
 	elif (board =="E"):
-		checkspace(move, E, activeplayer, mark, board)
-		E[move] = mark
+		validmark = checkspace(move, E, activeplayer, mark, board)
+		E[move] = validmark
 	elif (board =="F"):
-		checkspace(move, F, activeplayer, mark, board)
-		F[move] = mark
+		validmark = checkspace(move, F, activeplayer, mark, board)
+		F[move] = validmark
 	elif (board =="G"):
-		checkspace(move, G, activeplayer, mark, board)
-		G[move] = mark
+		validmark = checkspace(move, G, activeplayer, mark, board)
+		G[move] = validmark
 	elif (board =="H"):
-		checkspace(move, H, activeplayer, mark, board)
-		H[move] = mark
+		validmark checkspace(move, H, activeplayer, mark, board)
+		H[move] = validmark
 	else:
-		checkspace(move, I, activeplayer, mark, board)
-		I[move] = mark
+		validmark = checkspace(move, I, activeplayer, mark, board)
+		I[move] = validmark
 	return A, B, C, D, E, F, G, H, I
 
 #check to see if space is free
 def checkspace(move, boardcontents, activeplayer, mark, board):
-	while (boardcontents[move] == "x"):
+	while (boardcontents[move] == "x" or boardcontents[move] == "o"):
 		print ("This square is taken")
-		play(board, activeplayer, mark)
-	while (boardcontents[move] == "o"):
-		print ("This square is taken")
-		play(board, activeplayer, mark)
+		mark = raw_input("\nPlayer "+activeplayer+": Enter a free space on board "+board+" to place an "+mark+"\n>>")
+	return mark
+		
+
 
 
 #takes inputted letter and changes it into an integer to simplify computation
@@ -216,8 +216,10 @@ def check(board):
 
 def checkforcats(board):
 	if((board[0] == "x" or board[0] == "y") and (board[1] == "x" or board[1] == "y") and (board[2] == "x" or board[2] == "y") and (board[3] == "x" or board[3] == "y") and (board[4] == "x" or board[4] == "y") and (board[5] == "x" or board[5] == "y") and (board[6] == "x" or board[6] == "y") and (board[7] == "x" or board[7] == "y") and (board[8] == "x" or board[8] == "y")):
+		print True
 		return True
 	else:
+		print False
 		return False
 
 def checksmallcats(A, B, C, D, E, F, G, H, I):
@@ -305,14 +307,14 @@ def main():
 	mark = "x"
 	wincondition = False
 	#play starts
+	pdb.set_trace()
 	while (wincondition == False):
 		move, lmove = play(board, activeplayer, mark)
 		A, B, C, D, E, F, G, H, I = updateboards(A, B, C, D, E, F, G, H, I, move, board, activeplayer, mark)
-		displayboard(A, B, C, D, E, F, G, H, I, Overall)
 		A, B, C, D, E, F, G, H, I, Overall = checksmallboards(A, B, C, D, E, F, G, H, I, Overall, mark)
 		A, B, C, D, E, F, G, H, I = checksmallcats(A, B, C, D, E, F, G, H, I)
+		displayboard(A, B, C, D, E, F, G, H, I, Overall)
 		wincondition = checkoverallboard(Overall, activeplayer)
-		print wincondition
 		board = nextboard(A, B, C, D, E, F, G, H, I, lmove)
 		activeplayer, mark = switchplayer(activeplayer)
 	
@@ -320,8 +322,8 @@ def main():
 
 
 #todo: 
-#fix delay in small board win check
-#fix overall win check and overall cats check
+#overall cats check
+#fix small cats check
 #fix square is taken error
 
 #\   /
